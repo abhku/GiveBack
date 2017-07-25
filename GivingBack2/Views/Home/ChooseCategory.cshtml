@@ -1,0 +1,32 @@
+﻿@model GivingBack2.ViewModels.ChooseCategoryViewModel
+
+@{
+    ViewBag.Title = "ChooseCategory";
+}
+
+<div style="font-family:Segoe UI">
+	@using (Html.BeginForm("SpecifyParameters", "Home", FormMethod.Post))
+	{
+		<div class="row">
+			<div class="col-md-4">
+				You want to donate @ViewBag.ResourceType <br />
+				<h2>Whom do you want to help? </h2>
+				<p>
+					@foreach (var item in Model.CategoryList)
+					{
+						<div class="form-group">
+							<div class="radio">
+								@Html.RadioButtonFor(m => m.SelectedCategoryId, @item.CategoryId)
+								@Html.Label(@item.CategoryDisplayName)
+							</div>
+						</div>
+					}
+
+					@Html.TextBoxFor(m => m.SelectedResource, new { @class = "form-control", @style="display:none" })
+				</p>
+			</div>
+		</div>
+		<input type="submit" value="Submit" />
+	}
+</div>
+
