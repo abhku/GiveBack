@@ -5,11 +5,15 @@
 }
 
 <div style="font-family:Segoe UI">
+
+	<div class="badge">
+		<h3>You want to donate <a href="/Home">@ViewBag.ResourceType </a> <br /> </h3>
+	</div>
+
 	@using (Html.BeginForm("SpecifyParameters", "Home", FormMethod.Post))
 	{
 		<div class="row">
 			<div class="col-md-4">
-				You want to donate @ViewBag.ResourceType <br />
 				<h2>Whom do you want to help? </h2>
 				<p>
 					@foreach (var item in Model.CategoryList)

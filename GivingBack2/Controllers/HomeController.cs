@@ -30,7 +30,12 @@ namespace GivingBack2.Controllers
 			ViewBag.SelectedCategory = c1.CategoryId;
 			ViewBag.SelectedCategoryName = c1.CategoryName;
 			ViewBag.ResourceType = chooseCategoryViewModel.SelectedResource;
-			return View();
+
+			SpecifyParametersViewModel specifyParametersViewModel = new SpecifyParametersViewModel();
+			specifyParametersViewModel.SelectedCategoryName = c1.CategoryName;
+			specifyParametersViewModel.SelectedcategoryId = c1.CategoryId;
+			specifyParametersViewModel.SelectedResource = chooseCategoryViewModel.SelectedResource;
+			return View(specifyParametersViewModel);
 		}
 
 		[AllowAnonymous]

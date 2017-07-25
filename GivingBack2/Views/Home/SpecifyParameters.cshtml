@@ -1,8 +1,55 @@
-﻿@{
+﻿@model GivingBack2.ViewModels.SpecifyParametersViewModel
+
+@{
 	ViewBag.Title = "SpecifyParamters";
 }
 
 <div style="font-family:Segoe UI">
-	You want to donate @ViewBag.ResourceType for @ViewBag.SelectedCategoryName .
+	<div class="badge">
+		<h3>You want to donate <a href="/Home">@ViewBag.ResourceType</a> to help <a href="/Home/ChooseCategory">@ViewBag.SelectedCategoryName</a> <br /> </h3>
+	</div>
+	<br /><br />
+	@using (Html.BeginForm("RequirementsPage", "Home", FormMethod.Post))
+	{
+		@Html.TextBoxFor(m => m.SelectedResource, new { @class = "form-control", @style = "display:none" })
+		@Html.TextBoxFor(m => m.SelectedCategoryName, new { @class = "form-control", @style = "display:none" })
+		@Html.TextBoxFor(m => m.SelectedcategoryId, new { @class = "form-control", @style = "display:none" })
+
+		if (Model.SelectedResource == GivingBack2.Models.ResourceTypes.Money)
+		{
+			@Html.LabelFor(m=>m.DonationAmount, new { @class = "form-control"})
+			@Html.TextBoxFor(m=>m.DonationAmount, new { @class = "form-control"})
+		}
+		else if (Model.SelectedResource == GivingBack2.Models.ResourceTypes.Product)
+		{
+
+			@Html.LabelFor(m => m.ProductName, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.ProductName, new { @class = "form-control" })
+			<br />
+			@Html.LabelFor(m => m.ProductUnit, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.ProductUnit, new { @class = "form-control" })
+			<br />
+			@Html.LabelFor(m => m.ProductQuantity, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.ProductQuantity, new { @class = "form-control" })
+		}
+		else if (Model.SelectedResource == GivingBack2.Models.ResourceTypes.Time)
+		{
+			@Html.LabelFor(m => m.StartDate, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.StartDate, new { @class = "form-control date-picker" })
+			<br />
+			@Html.LabelFor(m => m.EndDate, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.EndDate, new { @class = "form-control date-picker" })
+			<br />
+			@Html.LabelFor(m => m.StartTime, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.StartTime, new { @class = "form-control" })
+			<br />
+			@Html.LabelFor(m => m.HoursPerDate, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.HoursPerDate, new { @class = "form-control" })
+		}
+
+		<br /> <br />
+		<input type="submit" value="Submit" />
+	}
+
 </div>
 
