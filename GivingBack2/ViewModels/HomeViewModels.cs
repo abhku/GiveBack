@@ -8,7 +8,39 @@ using System.Web;
 namespace GivingBack2.ViewModels
 {
 	public class HomeIndexViewModel
+	{	
+		public static List<Category> CategoryList;
+		public int SelectedCategoryId { get; set; }
+
+		static HomeIndexViewModel()
+		{
+			CategoryList = GetCategories();
+		}
+
+		public HomeIndexViewModel()
+		{
+		}
+
+		private static List<Category> GetCategories()
+		{
+			List<Category> categoryList = new List<Category>();
+			categoryList.Add(new Category() { CategoryName = "Women", CategoryDisplayName = "Want to Empower Women ?", CategoryId = 0 });
+
+			categoryList.Add(new Category() { CategoryName = "SeniorCitizen", CategoryDisplayName = "Want to help Senior Citizen ?", CategoryId = 1 });
+
+			categoryList.Add(new Category() { CategoryName = "Child", CategoryDisplayName = "Want to Educate children ?", CategoryId = 2 });
+			return categoryList;
+		}
+	}
+
+	public class ChooseCategoryViewModel
 	{
+		public ResourceTypes SelectedResource { get; set; }
+
+		public int SelectedCategoryId { get; set; }
+		public string SelectedCategoryName { get; set; }
+
+
 		[Display(Name = "Want to donate some money?")]
 		public bool MoneyResourceType
 		{
@@ -34,32 +66,6 @@ namespace GivingBack2.ViewModels
 			{
 				return SelectedResource == ResourceTypes.Product;
 			}
-		}
-
-		public ResourceTypes SelectedResource { get; set; }
-	}
-
-	public class ChooseCategoryViewModel
-	{
-		public ResourceTypes SelectedResource { get; set; }
-
-		public List<Category> CategoryList;
-		public int SelectedCategoryId { get; set; }
-
-		public ChooseCategoryViewModel()
-		{
-			CategoryList = GetCategories();
-		}
-
-		private List<Category> GetCategories()
-		{
-			List<Category> categoryList = new List<Category>();
-			categoryList.Add(new Category() { CategoryName = "Women", CategoryDisplayName = "Want to Empower Women ?", CategoryId = 0 });
-
-			categoryList.Add(new Category() { CategoryName = "SeniorCitizen", CategoryDisplayName = "Want to help Senior Citizen ?", CategoryId = 1 });
-
-			categoryList.Add(new Category() { CategoryName = "Child", CategoryDisplayName = "Want to Educate children ?", CategoryId = 2 });
-			return categoryList;
 		}
 	}
 
@@ -96,7 +102,7 @@ namespace GivingBack2.ViewModels
 
 		[Display(Name = "When do you want to start(Time)?")]
 		[DataType(DataType.Time)]
-		public string StartTime { get; set; }
+		public Time StartTime { get; set; }
 		
 		[Display(Name = "How many hours can you donate after starting?")]
 		public int HoursPerDate { get; set; }
@@ -104,7 +110,7 @@ namespace GivingBack2.ViewModels
 		public SpecifyParametersViewModel()
 		{
 			//StartDate = DateTime.UtcNow.AddHours(5.5);
-		//	EndDate = DateTime.UtcNow.AddHours(5.5).AddDays(1);
+			//EndDate = DateTime.UtcNow.AddHours(5.5).AddDays(1);
 			//StartTime = DateTime.UtcNow.AddHours(6.5);
 			//EndTime = StartTime;
 		}

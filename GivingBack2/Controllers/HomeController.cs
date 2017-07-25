@@ -18,15 +18,19 @@ namespace GivingBack2.Controllers
 
 		public ActionResult ChooseCategory(HomeIndexViewModel homeIndexViewModel)
 		{
-			ViewBag.ResourceType = homeIndexViewModel.SelectedResource;
+			ViewBag.SelectedCategoryId = homeIndexViewModel.SelectedCategoryId;
+			ViewBag.SelectedCategoryName = HomeIndexViewModel.CategoryList[homeIndexViewModel.SelectedCategoryId].CategoryName;
+
 			var chooseCategoryViewModel = new ChooseCategoryViewModel();
-			chooseCategoryViewModel.SelectedResource = homeIndexViewModel.SelectedResource;
+			chooseCategoryViewModel.SelectedCategoryId = homeIndexViewModel.SelectedCategoryId;
+			chooseCategoryViewModel.SelectedCategoryName = HomeIndexViewModel.CategoryList[homeIndexViewModel.SelectedCategoryId].CategoryName;
+
 			return View(chooseCategoryViewModel);
 		}
 
 		public ActionResult SpecifyParameters(ChooseCategoryViewModel chooseCategoryViewModel)
 		{
-			var c1 = chooseCategoryViewModel.CategoryList.First((c) => c.CategoryId == chooseCategoryViewModel.SelectedCategoryId);
+			var c1 = HomeIndexViewModel.CategoryList.First((c) => c.CategoryId == chooseCategoryViewModel.SelectedCategoryId);
 			ViewBag.SelectedCategory = c1.CategoryId;
 			ViewBag.SelectedCategoryName = c1.CategoryName;
 			ViewBag.ResourceType = chooseCategoryViewModel.SelectedResource;
@@ -36,6 +40,16 @@ namespace GivingBack2.Controllers
 			specifyParametersViewModel.SelectedcategoryId = c1.CategoryId;
 			specifyParametersViewModel.SelectedResource = chooseCategoryViewModel.SelectedResource;
 			return View(specifyParametersViewModel);
+		}
+
+		public ActionResult Results(SpecifyParametersViewModel specifyParametersViewModel)
+		{
+			var c1 = HomeIndexViewModel.CategoryList.First((c) => c.CategoryId == specifyParametersViewModel.SelectedcategoryId);
+			ViewBag.SelectedCategory = c1.CategoryId;
+			ViewBag.SelectedCategoryName = c1.CategoryName;
+			ViewBag.ResourceType = specifyParametersViewModel.SelectedResource;
+			
+			return View();
 		}
 
 		[AllowAnonymous]
