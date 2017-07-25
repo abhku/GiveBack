@@ -81,6 +81,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -203,6 +205,46 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\DB\database_firewall_rules.cs">
+      <DependentUpon>GivingBackDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\GivingBackDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GivingBackDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\GivingBackDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GivingBackDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\GivingBackDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GivingBackDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\HelpCategory.cs">
+      <DependentUpon>GivingBackDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\MoneyResource.cs">
+      <DependentUpon>GivingBackDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\OrgDetail.cs">
+      <DependentUpon>GivingBackDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\ProductResource.cs">
+      <DependentUpon>GivingBackDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\Requirement.cs">
+      <DependentUpon>GivingBackDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\Resource.cs">
+      <DependentUpon>GivingBackDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\TimeResource.cs">
+      <DependentUpon>GivingBackDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityManager\RequirementManager.cs" />
     <Compile Include="Models\ResourceTypes.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\HomeViewModels.cs" />
@@ -259,15 +301,38 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\DB\GivingBackDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GivingBackDBModel.edmx</DependentUpon>
+      <LastGenOutput>GivingBackDBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB\GivingBackDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GivingBackDBModel.edmx</DependentUpon>
+      <LastGenOutput>GivingBackDBModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+<<<<<<< HEAD
+    <EntityDeploy Include="Models\DB\GivingBackDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GivingBackDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DB\GivingBackDBModel.edmx.diagram">
+      <DependentUpon>GivingBackDBModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+=======
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
+>>>>>>> 9dcf303df5638ceb72e8e302fba5962eb5d1370d
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
@@ -329,6 +394,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
