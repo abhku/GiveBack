@@ -23,11 +23,11 @@
 		else if (Model.SelectedResource == GivingBack2.Models.ResourceTypes.Product)
 		{
 
-			@Html.LabelFor(m => m.ProductName, new { @class = "form-control" })
-			@Html.TextBoxFor(m => m.ProductName, new { @class = "form-control" })
-			<br />
+			@Html.LabelFor(m => m.ProductNameLabel, new { @class = "form-control" })
+			@Html.DropDownListFor(m => m.SelectedProductName, new SelectList(GivingBack2.ViewModels.SpecifyParametersViewModel.GetProductList(Model.SelectedcategoryId)@*GivingBack2.ViewModels.SpecifyParametersViewModel.ProductNameList*@), new { @class = "form-control" })
+			@*<br />
 			@Html.LabelFor(m => m.ProductUnit, new { @class = "form-control" })
-			@Html.TextBoxFor(m => m.ProductUnit, new { @class = "form-control" })
+			@Html.TextBoxFor(m => m.ProductUnit, new { @class = "form-control" })*@
 			<br />
 			@Html.LabelFor(m => m.ProductQuantity, new { @class = "form-control" })
 			@Html.TextBoxFor(m => m.ProductQuantity, new { @class = "form-control" })

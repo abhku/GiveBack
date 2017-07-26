@@ -21,11 +21,11 @@ namespace GivingBack2.Controllers
 		{
 			ViewBag.SelectedCategoryId = homeIndexViewModel.SelectedCategoryId;
 			//SelectedCategoryId-1 because in db, IDs start from 1
-			ViewBag.SelectedCategoryName = HomeIndexViewModel.CategoryList[homeIndexViewModel.SelectedCategoryId-1].CategoryName;
+			ViewBag.SelectedCategoryName = HomeIndexViewModel.CategoryList[(int)homeIndexViewModel.SelectedCategoryId-1].CategoryName;
 
 			var chooseCategoryViewModel = new ChooseCategoryViewModel();
 			chooseCategoryViewModel.SelectedCategoryId = homeIndexViewModel.SelectedCategoryId;
-			chooseCategoryViewModel.SelectedCategoryName = HomeIndexViewModel.CategoryList[homeIndexViewModel.SelectedCategoryId-1].CategoryName;
+			chooseCategoryViewModel.SelectedCategoryName = HomeIndexViewModel.CategoryList[(int)homeIndexViewModel.SelectedCategoryId-1].CategoryName;
 
 			return View(chooseCategoryViewModel);
 		}

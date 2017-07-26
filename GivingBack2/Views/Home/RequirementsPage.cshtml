@@ -14,29 +14,60 @@
 			<div style="font-family:Segoe UI">
 				@using (Html.BeginForm("Results", "Home", FormMethod.Post))
 				{
-					<table id="OrganizationTable" border="2">
-						<thead>
-							<tr>
-								<th>OrganizationName</th>
-								<th>Purpose of Program</th>
-								<th>Amount Needs of Organization</th>
-								<th>Contribute!!</th>
-							</tr>
-						</thead>
-						<tbody>
-
-							@foreach(var item in Model)
-							{
+					if (Model.FirstOrDefault().SelectedResource == GivingBack2.Models.ResourceTypes.Money)
+					{									
+						<table id="OrganizationTable" border="2">
+							<thead>
 								<tr>
-									<td>@Html.Label(@item.OrganizationName) @Html.Hidden("Name", @item.OrganizationName + "Contribute")</td>
-									<td>@Html.Label(@item.ProgramDescription)</td>
-									<td>@Html.Label(@item.AmountNeedForOrg.ToString())</td>
-									<td><input type="submit" value="Contribute" /></td>
+									<th>OrganizationName</th>
+									<th>Purpose of Program</th>
+									<th>Amount Needs of Organization</th>
+									<th>Contribute!!</th>
 								</tr>
-							}
-						</tbody>
-						<!--Add footer for totals-->
-					</table>					
+							</thead>
+							<tbody>
+
+								@foreach(var item in Model)
+								{
+									<tr>
+										<td>@Html.Label(@item.OrganizationName) @Html.Hidden("Name", @item.OrganizationName + "Contribute")</td>
+										<td>@Html.Label(@item.ProgramDescription)</td>
+										<td>@Html.Label(@item.AmountNeedForOrg.ToString())</td>
+										<td><input type="submit" value="Contribute" /></td>
+									</tr>
+								}
+							</tbody>
+							<!--Add footer for totals-->
+						</table>
+					}
+					else if (Model.FirstOrDefault().SelectedResource == GivingBack2.Models.ResourceTypes.Product)
+					{
+						<table id="OrganizationTable" border="2">
+							<thead>
+								<tr>
+									<th>OrganizationName</th>
+									<th>Purpose of Program</th>
+									<th>Name of the Product</th>
+									<th>Quantity Required</th>
+									<th>Contribute!!</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>@Html.Label(@item.OrganizationName) @Html.Hidden("Name", @item.OrganizationName + "Contribute")</td>
+										<td>@Html.Label(@item.ProgramDescription)</td>
+										<td>@Html.Label(@item.ProductName)</td>
+										<td>@Html.Label(@item.AvailableQuantity.ToString() +" "+ @item.ProductUnit)</td>
+										<td><input type="submit" value="Contribute" /></td>
+									</tr>
+								}
+							</tbody>
+							<!--Add footer for totals-->
+						</table>
+					}
 				}
 		</p>
 
