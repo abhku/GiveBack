@@ -208,6 +208,11 @@ namespace GivingBack2.ViewModels
 		//Mapped Orgs
 		[Display(Name = "The NGO that matches your requirement")]
 		public string OrganizationName { get; set; }
+		[Display(Name = "The Address of the NGO")]
+		public string OrganizationAddress { get; set; }
+
+		[Display(Name = "The Contact of the NGO")]
+		public string OrganizationContact { get; set; }
 
 		[Display(Name = "The Description of the Program")]
 		public string ProgramDescription { get; set; }
@@ -227,6 +232,10 @@ namespace GivingBack2.ViewModels
 		//Mapped Orgs
 		[Display(Name = "The NGO that matches your requirement")]
 		public string OrganizationName { get; set; }
+		[Display(Name = "The NGO that matches your requirement")]
+		public string OrgAddress { get; set; }
+		[Display(Name = "The NGO that matches your requirement")]
+		public string OrgContact { get; set; }
 
 		[Display(Name = "The Description of the Program")]
 		public string ProgramDescription { get; set; }
