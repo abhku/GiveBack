@@ -6,10 +6,10 @@
 
 <div style="font-family:Segoe UI">
 	<div class="badge">
-		<h3>You want to donate <a href="/Home">@ViewBag.ResourceType</a> to help <a href="/Home/ChooseCategory">@ViewBag.SelectedCategoryName</a> <br /> </h3>
+		<h3>You want to help <a href="/Home">@ViewBag.SelectedCategoryName</a> by donating <a href="/Home/ChooseCategory">@ViewBag.ResourceType</a> <br /> </h3>
 	</div>
 	<br /><br />
-	@using (Html.BeginForm("RequirementsPage", "Home", FormMethod.Post))
+	@using (Html.BeginForm("Results", "Home", FormMethod.Post))
 	{
 		@Html.TextBoxFor(m => m.SelectedResource, new { @class = "form-control", @style = "display:none" })
 		@Html.TextBoxFor(m => m.SelectedCategoryName, new { @class = "form-control", @style = "display:none" })
@@ -41,7 +41,7 @@
 			@Html.TextBoxFor(m => m.EndDate, new { @class = "form-control date-picker" })
 			<br />
 			@Html.LabelFor(m => m.StartTime, new { @class = "form-control" })
-			@Html.TextBoxFor(m => m.StartTime, new { @class = "form-control" })
+			@Html.DropDownListFor(m => m.StartTime.SelectedTimeIndex, new SelectList(GivingBack2.Models.Time.TimeList),new { @class = "form-control" })
 			<br />
 			@Html.LabelFor(m => m.HoursPerDate, new { @class = "form-control" })
 			@Html.TextBoxFor(m => m.HoursPerDate, new { @class = "form-control" })

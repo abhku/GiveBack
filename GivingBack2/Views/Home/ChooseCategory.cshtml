@@ -1,36 +1,46 @@
 ﻿@model GivingBack2.ViewModels.ChooseCategoryViewModel
 
 @{
-    ViewBag.Title = "ChooseCategory";
+	ViewBag.Title = "ChooseCategory";
 }
 
 <div style="font-family:Segoe UI">
 
 	<div class="badge">
-		<h3>You want to donate <a href="/Home">@ViewBag.ResourceType </a> <br /> </h3>
+		<h3>You want to help <a href="/Home">@ViewBag.SelectedCategoryName </a> <br /> </h3>
 	</div>
 
 	@using (Html.BeginForm("SpecifyParameters", "Home", FormMethod.Post))
 	{
 		<div class="row">
 			<div class="col-md-4">
-				<h2>Whom do you want to help? </h2>
+				<h2>How do you want to help? </h2>
 				<p>
-					@foreach (var item in Model.CategoryList)
-					{
-						<div class="form-group">
-							<div class="radio">
-								@Html.RadioButtonFor(m => m.SelectedCategoryId, @item.CategoryId)
-								@Html.Label(@item.CategoryDisplayName)
-							</div>
+					<div class="form-group">
+						<div class="radio">
+							@Html.RadioButtonFor(m => m.SelectedResource, 0)
+							@Html.LabelFor(m => m.MoneyResourceType)
 						</div>
-					}
+					</div>
 
-					@Html.TextBoxFor(m => m.SelectedResource, new { @class = "form-control", @style="display:none" })
+					<div class="form-group">
+						<div class="radio">
+							@Html.RadioButtonFor(m => m.SelectedResource, 1)
+							@Html.LabelFor(m => m.TimeResourceType)
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="radio">
+							@Html.RadioButtonFor(m => m.SelectedResource, 2)
+							@Html.LabelFor(m => m.ProductResourceType)
+						</div>
+					</div>
+
+					@Html.TextBoxFor(m => m.SelectedCategoryId, new { @style = "display:none" })
 				</p>
 			</div>
 		</div>
 		<input type="submit" value="Submit" />
 	}
 </div>
-
