@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="269b7c9bc6ed4aa6984fd79a488fc64d" Name="Diagram1">
+        <EntityTypeShape EntityType="GiveBackDBModel.HelpCategory" Width="1.5" PointX="0.875" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiveBackDBModel.MoneyResource" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiveBackDBModel.OrgDetail" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiveBackDBModel.ProductResource" Width="1.5" PointX="6" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiveBackDBModel.Requirement" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiveBackDBModel.Resource" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiveBackDBModel.TimeResource" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiveBackDBModel.database_firewall_rules" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="GiveBackDBModel.FK__Requireme__Recei__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="GiveBackDBModel.FK__MoneyReso__ReqId__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="GiveBackDBModel.FK__MoneyReso__Resou__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="GiveBackDBModel.FK__Requireme__OrgId__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="GiveBackDBModel.FK__ProductRe__ReqId__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="GiveBackDBModel.FK__ProductRe__Resou__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="GiveBackDBModel.FK__Requireme__Resou__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="GiveBackDBModel.FK__TimeResou__ReqId__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="GiveBackDBModel.FK__TimeResou__Resou__47DBAE45" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
