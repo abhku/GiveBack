@@ -1,10 +1,16 @@
-﻿
+﻿@model GivingBack2.ViewModels.MappedRequirementViewModel
+
 @{
 	ViewBag.Title = "Results";
 }
 
 <div style="font-family:Segoe UI">
 	<div class="badge">
-		<h3>You want to help <a href="/Home">@ViewBag.SelectedCategoryName</a> by donating <a href="/Home/ChooseCategory">@ViewBag.ResourceType</a> <br /> </h3>
+		@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+		{		
+			@Html.DisplayName("You have contributed your " + Model.SelectedResource + " <br /> for " + Model.SelectedCategoryName + "<br /> by selecting the Organization  <br />  Thanks !!");
+		
+		<input type="submit" value="Home" />
+		}
 	</div>
-</div
+</div>

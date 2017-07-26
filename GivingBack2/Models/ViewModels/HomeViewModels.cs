@@ -24,11 +24,13 @@ namespace GivingBack2.ViewModels
 		private static List<Category> GetCategories()
 		{
 			List<Category> categoryList = new List<Category>();
-			categoryList.Add(new Category() { CategoryName = "Women", CategoryDisplayName = "Want to Empower Women ?", CategoryId = 0 });
+			categoryList.Add(new Category() { CategoryName = "Women", CategoryDisplayName = "Want to Empower Women ?", CategoryId = 1 });
 
-			categoryList.Add(new Category() { CategoryName = "SeniorCitizen", CategoryDisplayName = "Want to help Senior Citizen ?", CategoryId = 1 });
+			categoryList.Add(new Category() { CategoryName = "SeniorCitizen", CategoryDisplayName = "Want to help Senior Citizen ?", CategoryId = 2 });
 
-			categoryList.Add(new Category() { CategoryName = "Child", CategoryDisplayName = "Want to Educate children ?", CategoryId = 2 });
+			categoryList.Add(new Category() { CategoryName = "Child", CategoryDisplayName = "Want to Educate children ?", CategoryId = 3 });
+
+			categoryList.Add(new Category() { CategoryName = "Disabled", CategoryDisplayName = "Want to help the differently abled ?", CategoryId = 4 });
 			return categoryList;
 		}
 	}
@@ -74,7 +76,7 @@ namespace GivingBack2.ViewModels
 		public ResourceTypes SelectedResource { get; set; }
 		public string SelectedCategoryName { get; set; }
 		public int SelectedcategoryId { get; set; }
-
+		
 		// Money
 		[Display(Name = "How much you want to donate?")]
 		[DataType(DataType.Currency)]
@@ -123,8 +125,11 @@ namespace GivingBack2.ViewModels
 		public int SelectedcategoryId { get; set; }
 		public int OrganizationId { get; set; }
 
-		// Money
-		[Display(Name = "How much you want to donate?")]
+		//Target OrgName
+		public string TargetOrgName { get; set; }
+
+			// Money
+			[Display(Name = "How much you want to donate?")]
 		[DataType(DataType.Currency)]
 		public int DonationAmount { get; set; }
 
@@ -169,6 +174,10 @@ namespace GivingBack2.ViewModels
 		[Display(Name = "The Description of the Program")]
 		public string ProgramDescription { get; set; }
 
+		//Money - Org
+		[Display(Name = "The Amount need of Organization")]
+		public long AmountNeedForOrg { get; set; }
+
 
 		public MappedRequirementViewModel()
 		{
@@ -177,5 +186,21 @@ namespace GivingBack2.ViewModels
 			//StartTime = DateTime.UtcNow.AddHours(6.5);
 			//EndTime = StartTime;
 		}
+	}
+
+	public class MoneyReqViewModel
+	{
+		//Mapped Orgs
+		[Display(Name = "The NGO that matches your requirement")]
+		public string OrganizationName { get; set; }
+
+		[Display(Name = "The Description of the Program")]
+		public string ProgramDescription { get; set; }
+
+		[Display(Name = "The Address of the NGO")]
+		public long AmountTotal { get; set; }
+
+		[Display(Name = "The Contact of the NGO")]
+		public long AmountRemaining { get; set; }		
 	}
 }

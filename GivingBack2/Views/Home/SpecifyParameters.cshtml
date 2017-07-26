@@ -6,10 +6,10 @@
 
 <div style="font-family:Segoe UI">
 	<div class="badge">
-		<h3>You want to help <a href="/Home">@ViewBag.SelectedCategoryName</a> by donating <a href="/Home/ChooseCategory">@ViewBag.ResourceType</a> <br /> </h3>
+		<h3>You want to help @ViewBag.SelectedCategoryName by donating @ViewBag.ResourceType <br /> </h3>
 	</div>
 	<br /><br />
-	@using (Html.BeginForm("Results", "Home", FormMethod.Post))
+	@using (Html.BeginForm("RequirementsPage", "Home", FormMethod.Post))
 	{
 		@Html.TextBoxFor(m => m.SelectedResource, new { @class = "form-control", @style = "display:none" })
 		@Html.TextBoxFor(m => m.SelectedCategoryName, new { @class = "form-control", @style = "display:none" })
