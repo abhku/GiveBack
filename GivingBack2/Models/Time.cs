@@ -26,10 +26,8 @@ namespace GivingBack2.Models
 		public int SelectedTimeIndex { get; set; }
 		public string SelectedTime
 		{
-			get
-			{
-				return TimeList[SelectedTimeIndex];
-			}
+			get;
+			set;
 		}
 	}
 }
