@@ -9,7 +9,7 @@ namespace GivingBack2.ViewModels
 {
 	public class HomeIndexViewModel
 	{	
-		public static List<Category> CategoryList;
+		public static List<Category> CategoryList = new List<Category>();
 		public int SelectedCategoryId { get; set; }
 
 		static HomeIndexViewModel()
