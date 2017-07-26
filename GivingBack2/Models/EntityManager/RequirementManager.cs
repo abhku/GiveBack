@@ -24,8 +24,45 @@ namespace GivingBack2.Models.EntityManager
 		{
 			List<MappedRequirementViewModel> mappedRequirementViewModel = new List<MappedRequirementViewModel>();
 
-			// Business Logic here
+			GiveBackDBEntities db = new GiveBackDBEntities();
+			var pviewModel = new List<ProductReqViewModel>();
 
+			var resultsFromDB = (from a in db.OrgDetails
+								 join b in db.Requirements on a.OrgId equals b.OrgId
+								 join c in db.ProductResources on b.ReqId equals c.ReqId
+								 where c.Quantity >= specifyParametersViewModel.ProductQuantity
+								 && c.Name == specifyParametersViewModel.SelectedProductName
+								 && b.ResourceId == (long)specifyParametersViewModel.SelectedResource
+								 && b.ReceiverId == specifyParametersViewModel.SelectedcategoryId
+								 select new { a.OrgId, a.OrgName, b.ResourceId, b.ReceiverId, b.Description, c.ReqId, c.Unit, c.Quantity, c.Name });
+
+			foreach (var item in resultsFromDB)
+			{
+				pviewModel.Add(new ProductReqViewModel
+				{
+					SelectedCategory = item.ReceiverId,
+					SelectedResource = item.ResourceId,
+					OrganizationName = item.OrgName,
+					ProgramDescription = item.Description,
+					ProductName = item.Name,
+					Unit = item.Unit,
+					Quantity = Int64.Parse(item.Quantity.ToString())
+				});
+			}
+
+			foreach (var item in pviewModel)
+			{
+				mappedRequirementViewModel.Add(new MappedRequirementViewModel
+				{
+					SelectedcategoryId = item.SelectedCategory,
+					SelectedResource = (ResourceTypes)item.SelectedResource,
+					OrganizationName = item.OrganizationName,
+					ProgramDescription = item.ProgramDescription,
+					ProductName = item.ProductName,
+					ProductUnit = item.Unit,
+					AvailableQuantity = item.Quantity
+				});
+			}
 
 			return mappedRequirementViewModel;
 		}
@@ -50,6 +87,8 @@ namespace GivingBack2.Models.EntityManager
 			{
 				mviewModel.Add(new MoneyReqViewModel
 				{
+					SelectedCategory = item.ReceiverId,
+					SelectedResource = item.ResourceId,
 					OrganizationName = item.OrgName,
 					ProgramDescription = item.Description,
 					AmountTotal = Int64.Parse(item.AmountTotal.ToString()),
@@ -61,6 +100,8 @@ namespace GivingBack2.Models.EntityManager
 			{
 				mappedRequirementViewModel.Add(new MappedRequirementViewModel
 				{
+					SelectedcategoryId = item.SelectedCategory,
+					SelectedResource = (ResourceTypes)item.SelectedResource,
 					OrganizationName = item.OrganizationName,
 					ProgramDescription = item.ProgramDescription,
 					AmountNeedForOrg = item.AmountTotal
@@ -68,6 +109,24 @@ namespace GivingBack2.Models.EntityManager
 			}
 
 			return mappedRequirementViewModel;
+		}
+
+		internal List<string> GetProductListFromDB(long selectedCategoryId)
+		{
+			GiveBackDBEntities db = new GiveBackDBEntities();
+
+			List<string> productList = new List<string>();
+			var resultsFromDB = (from a in db.ProductResources
+								 join b in db.Requirements on a.ReqId equals b.ReqId
+								 where b.ReceiverId == selectedCategoryId
+								 select a.Name).Distinct().ToList();
+								
+			foreach (var item in resultsFromDB)
+			{
+				productList.Add(item.ToString());
+			}
+
+			return productList;
 		}
 	}
 }
