@@ -34,7 +34,7 @@ namespace GivingBack2.Models.EntityManager
 								 && c.Name == specifyParametersViewModel.SelectedProductName
 								 && b.ResourceId == (long)specifyParametersViewModel.SelectedResource
 								 && b.ReceiverId == specifyParametersViewModel.SelectedcategoryId
-								 select new { a.OrgId, a.OrgName, b.ResourceId, b.ReceiverId, b.Description, c.ReqId, c.Unit, c.Quantity, c.Name });
+								 select new { a.OrgId, a.OrgName, a.Address, a.Contact, b.ResourceId, b.ReceiverId, b.Description, c.ReqId, c.Unit, c.Quantity, c.Name });
 
 			foreach (var item in resultsFromDB)
 			{
@@ -43,6 +43,8 @@ namespace GivingBack2.Models.EntityManager
 					SelectedCategory = item.ReceiverId,
 					SelectedResource = item.ResourceId,
 					OrganizationName = item.OrgName,
+					OrgAddress = item.Address,
+					OrgContact = item.Contact,
 					ProgramDescription = item.Description,
 					ProductName = item.Name,
 					Unit = item.Unit,
@@ -57,6 +59,8 @@ namespace GivingBack2.Models.EntityManager
 					SelectedcategoryId = item.SelectedCategory,
 					SelectedResource = (ResourceTypes)item.SelectedResource,
 					OrganizationName = item.OrganizationName,
+					OrganizationAddress = item.OrgAddress,
+					OrganizationContact = item.OrgContact,
 					ProgramDescription = item.ProgramDescription,
 					ProductName = item.ProductName,
 					ProductUnit = item.Unit,
@@ -81,7 +85,7 @@ namespace GivingBack2.Models.EntityManager
 								where c.AmountTotal >= specifyParametersViewModel.DonationAmount
 								&& b.ResourceId == (long)specifyParametersViewModel.SelectedResource
 								&& b.ReceiverId == specifyParametersViewModel.SelectedcategoryId
-								select new { a.OrgId, a.OrgName, b.ResourceId, b.ReceiverId, b.Description, c.ReqId, c.AmountTotal, c.AmountRemaining });
+								select new { a.OrgId, a.OrgName, a.Address, a.Contact, b.ResourceId, b.ReceiverId, b.Description, c.ReqId, c.AmountTotal, c.AmountRemaining });
 
 			foreach (var item in resultsFromDB)
 			{
@@ -90,6 +94,8 @@ namespace GivingBack2.Models.EntityManager
 					SelectedCategory = item.ReceiverId,
 					SelectedResource = item.ResourceId,
 					OrganizationName = item.OrgName,
+					OrganizationAddress = item.Address,
+					OrganizationContact = item.Contact,
 					ProgramDescription = item.Description,
 					AmountTotal = Int64.Parse(item.AmountTotal.ToString()),
 					AmountRemaining = Int64.Parse(item.AmountRemaining.ToString())
@@ -103,6 +109,8 @@ namespace GivingBack2.Models.EntityManager
 					SelectedcategoryId = item.SelectedCategory,
 					SelectedResource = (ResourceTypes)item.SelectedResource,
 					OrganizationName = item.OrganizationName,
+					OrganizationAddress = item.OrganizationAddress,
+					OrganizationContact = item.OrganizationContact,
 					ProgramDescription = item.ProgramDescription,
 					AmountNeedForOrg = item.AmountTotal
 				});

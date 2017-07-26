@@ -19,9 +19,11 @@
 						<table id="OrganizationTable" border="2">
 							<thead>
 								<tr>
-									<th>OrganizationName</th>
+									<th>Organization Name</th>
+									<th>Address</th>
 									<th>Purpose of Program</th>
 									<th>Amount Needs of Organization</th>
+									<th>Contact</th>
 									<th>Contribute!!</th>
 								</tr>
 							</thead>
@@ -31,8 +33,10 @@
 								{
 									<tr>
 										<td>@Html.Label(@item.OrganizationName) @Html.Hidden("Name", @item.OrganizationName + "Contribute")</td>
+										<td>@Html.Label(@item.OrganizationAddress)</td>
 										<td>@Html.Label(@item.ProgramDescription)</td>
 										<td>@Html.Label(@item.AmountNeedForOrg.ToString())</td>
+										<td>@Html.Label(@item.OrganizationContact)</td>
 										<td><input type="submit" value="Contribute" /></td>
 									</tr>
 								}
@@ -46,9 +50,11 @@
 							<thead>
 								<tr>
 									<th>OrganizationName</th>
+									<th>Address</th>
 									<th>Purpose of Program</th>
 									<th>Name of the Product</th>
 									<th>Quantity Required</th>
+									<th>Contact</th>
 									<th>Contribute!!</th>
 								</tr>
 							</thead>
@@ -58,9 +64,47 @@
 								{
 									<tr>
 										<td>@Html.Label(@item.OrganizationName) @Html.Hidden("Name", @item.OrganizationName + "Contribute")</td>
+										<td>@Html.Label(@item.OrganizationAddress)</td>
 										<td>@Html.Label(@item.ProgramDescription)</td>
 										<td>@Html.Label(@item.ProductName)</td>
 										<td>@Html.Label(@item.AvailableQuantity.ToString() +" "+ @item.ProductUnit)</td>
+										<td>@Html.Label(@item.OrganizationContact)</td>
+										<td><input type="submit" value="Contribute" /></td>
+									</tr>
+								}
+							</tbody>
+							<!--Add footer for totals-->
+						</table>
+					}
+					else if (Model.FirstOrDefault().SelectedResource == GivingBack2.Models.ResourceTypes.Time)
+					{
+						<table id="OrganizationTable" border="2">
+							<thead>
+								<tr>
+									<th>OrganizationName</th>
+									<th>Address</th>
+									<th>Purpose of Program</th>
+									<th>Program Start Date</th>
+									<th>Program End Date</th>
+									<th>Program Start Time</th>
+									<th>Man Hours Needed Per day</th>
+									<th>Contact</th>
+									<th>Contribute!!</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>@Html.Label(@item.OrganizationName) @Html.Hidden("Name", @item.OrganizationName + "Contribute")</td>
+										<td>@Html.Label(@item.OrganizationAddress)</td>
+										<td>@Html.Label(@item.ProgramDescription)</td>
+										<td>@Html.Label(@item.StartDate)</td>
+										<td>@Html.Label(@item.EndDate)</td>
+										<td>@Html.Label(@item.StartTime)</td>
+										<td>@Html.Label(@item.HoursPerDate.ToString())</td>
+										<td>@Html.Label(@item.OrganizationContact)</td>
 										<td><input type="submit" value="Contribute" /></td>
 									</tr>
 								}
