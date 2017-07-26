@@ -49,11 +49,11 @@ namespace GivingBack2.Controllers
 			RequirementManager RM = new RequirementManager();
 			MappedRequirementViewModel mappedRequirementViewModel = new MappedRequirementViewModel();
 
-			if(specifyParameterViewModel.SelectedResource == ResourceTypes.Money)
+			if (specifyParameterViewModel.SelectedResource == ResourceTypes.Money)
 			{
 				mappedRequirementViewModel = RM.MoneyRequirementMapping(specifyParameterViewModel);
 			}
-			else if(specifyParameterViewModel.SelectedResource == ResourceTypes.Product)
+			else if (specifyParameterViewModel.SelectedResource == ResourceTypes.Product)
 			{
 				mappedRequirementViewModel = RM.ProductRequirementMapping(specifyParameterViewModel);
 			}
@@ -62,6 +62,7 @@ namespace GivingBack2.Controllers
 				mappedRequirementViewModel = RM.TimeRequirementMapping(specifyParameterViewModel);
 			}
 			return View(mappedRequirementViewModel);
+		}
 
 		public ActionResult Results(SpecifyParametersViewModel specifyParametersViewModel)
 		{
