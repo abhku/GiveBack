@@ -5,11 +5,11 @@
 }
 
 <div style="font-family:Segoe UI">
-	<div class="badge">
-		<h3>If you want to help <a href="/Home">@ViewBag.SelectedCategoryName</a> by donating <a href="/Home/ChooseCategory">@ViewBag.ResourceType</a> <br /> </h3>
+	<div class="help-block">
+		<h3>You chose to help @ViewBag.SelectedCategoryName by donating @ViewBag.ResourceType <br /> </h3>
 	</div>
 	<div class="">
-		<h2>Please find the top Organizations whom you can reach out to</h2>
+		<h2>Here are the organizations which we can find for you.</h2>
 		<p>
 			<div style="font-family:Segoe UI">
 				@using (Html.BeginForm("Results", "Home", FormMethod.Post))

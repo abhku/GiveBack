@@ -47,6 +47,9 @@ namespace GivingBack2.Controllers
 		[HttpPost]
 		public ActionResult RequirementsPage(SpecifyParametersViewModel specifyParameterViewModel)
 		{
+			ViewBag.ResourceType = specifyParameterViewModel.SelectedResource;
+			ViewBag.SelectedCategoryName = specifyParameterViewModel.SelectedCategoryName;
+
 			RequirementManager RM = new RequirementManager();
 			List<MappedRequirementViewModel> mappedRequirementViewModel = new List<MappedRequirementViewModel>();
 
