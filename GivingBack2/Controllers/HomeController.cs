@@ -1,4 +1,5 @@
 ﻿using GivingBack2.Models;
+using GivingBack2.Models.EntityManager;
 using GivingBack2.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,27 @@ namespace GivingBack2.Controllers
 			specifyParametersViewModel.SelectedcategoryId = c1.CategoryId;
 			specifyParametersViewModel.SelectedResource = chooseCategoryViewModel.SelectedResource;
 			return View(specifyParametersViewModel);
+		}
+
+		[HttpPost]
+		public ActionResult RequirementsPage(SpecifyParametersViewModel specifyParameterViewModel)
+		{
+			RequirementManager RM = new RequirementManager();
+			MappedRequirementViewModel mappedRequirementViewModel = new MappedRequirementViewModel();
+
+			if (specifyParameterViewModel.SelectedResource == ResourceTypes.Money)
+			{
+				mappedRequirementViewModel = RM.MoneyRequirementMapping(specifyParameterViewModel);
+			}
+			else if (specifyParameterViewModel.SelectedResource == ResourceTypes.Product)
+			{
+				mappedRequirementViewModel = RM.ProductRequirementMapping(specifyParameterViewModel);
+			}
+			else if (specifyParameterViewModel.SelectedResource == ResourceTypes.Time)
+			{
+				mappedRequirementViewModel = RM.TimeRequirementMapping(specifyParameterViewModel);
+			}
+			return View(mappedRequirementViewModel);
 		}
 
 		public ActionResult Results(SpecifyParametersViewModel specifyParametersViewModel)

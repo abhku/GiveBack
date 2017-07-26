@@ -115,4 +115,67 @@ namespace GivingBack2.ViewModels
 			//EndTime = StartTime;
 		}
 	}
+
+	public class MappedRequirementViewModel
+	{
+		public ResourceTypes SelectedResource { get; set; }
+		public string SelectedCategoryName { get; set; }
+		public int SelectedcategoryId { get; set; }
+		public int OrganizationId { get; set; }
+
+		// Money
+		[Display(Name = "How much you want to donate?")]
+		[DataType(DataType.Currency)]
+		public int DonationAmount { get; set; }
+
+		// Products
+
+		[Display(Name = "What do you want to donate?")]
+		public string ProductName { get; set; }
+
+		[Display(Name = "What is the unit of the product(eg. ItemCount, Kg ) ?")]
+		public string ProductUnit { get; set; }
+
+		[Display(Name = "How much do you want to donate (specify in the quantity above) ?")]
+		public string ProductQuantity { get; set; }
+
+		// Time
+		[Display(Name = "When do you want to start?")]
+		[DataType(DataType.Date)]
+		public string StartDate { get; set; }
+
+		[Display(Name = "When do you want to end?")]
+		[DataType(DataType.Date)]
+		public string EndDate { get; set; }
+
+		[Display(Name = "When do you want to start(Time)?")]
+		[DataType(DataType.Time)]
+		public string StartTime { get; set; }
+
+		[Display(Name = "How many hours can you donate after starting?")]
+		public int HoursPerDate { get; set; }
+
+
+		//Mapped Orgs
+		[Display(Name = "The NGO that matches your requirement")]
+		public string OrganizationName { get; set; }
+
+		[Display(Name = "The Address of the NGO")]
+		public string OrganizationAddress { get; set; }
+
+		[Display(Name = "The Contact of the NGO")]
+		public string OrganizationContact { get; set; }
+
+		[Display(Name = "The Description of the Program")]
+		public string ProgramDescription { get; set; }
+
+
+		public MappedRequirementViewModel()
+		{
+			//StartDate = DateTime.UtcNow.AddHours(5.5);
+			//	EndDate = DateTime.UtcNow.AddHours(5.5).AddDays(1);
+			//StartTime = DateTime.UtcNow.AddHours(6.5);
+			//EndTime = StartTime;
+		}
+	}
 }
