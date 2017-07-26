@@ -7,8 +7,8 @@ namespace GivingBack2.Models
 {
 	public enum ResourceTypes
 	{
-		Money = 0,
-		Time = 1,
-		Product = 2
+		Money = 1,
+		Time = 2,
+		Product = 3
 	}
 }

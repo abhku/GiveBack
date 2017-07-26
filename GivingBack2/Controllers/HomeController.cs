@@ -20,11 +20,12 @@ namespace GivingBack2.Controllers
 		public ActionResult ChooseCategory(HomeIndexViewModel homeIndexViewModel)
 		{
 			ViewBag.SelectedCategoryId = homeIndexViewModel.SelectedCategoryId;
-			ViewBag.SelectedCategoryName = HomeIndexViewModel.CategoryList[homeIndexViewModel.SelectedCategoryId].CategoryName;
+			//SelectedCategoryId-1 because in db, IDs start from 1
+			ViewBag.SelectedCategoryName = HomeIndexViewModel.CategoryList[homeIndexViewModel.SelectedCategoryId-1].CategoryName;
 
 			var chooseCategoryViewModel = new ChooseCategoryViewModel();
 			chooseCategoryViewModel.SelectedCategoryId = homeIndexViewModel.SelectedCategoryId;
-			chooseCategoryViewModel.SelectedCategoryName = HomeIndexViewModel.CategoryList[homeIndexViewModel.SelectedCategoryId].CategoryName;
+			chooseCategoryViewModel.SelectedCategoryName = HomeIndexViewModel.CategoryList[homeIndexViewModel.SelectedCategoryId-1].CategoryName;
 
 			return View(chooseCategoryViewModel);
 		}
@@ -47,7 +48,7 @@ namespace GivingBack2.Controllers
 		public ActionResult RequirementsPage(SpecifyParametersViewModel specifyParameterViewModel)
 		{
 			RequirementManager RM = new RequirementManager();
-			MappedRequirementViewModel mappedRequirementViewModel = new MappedRequirementViewModel();
+			List<MappedRequirementViewModel> mappedRequirementViewModel = new List<MappedRequirementViewModel>();
 
 			if (specifyParameterViewModel.SelectedResource == ResourceTypes.Money)
 			{
@@ -64,14 +65,13 @@ namespace GivingBack2.Controllers
 			return View(mappedRequirementViewModel);
 		}
 
-		public ActionResult Results(SpecifyParametersViewModel specifyParametersViewModel)
+		public ActionResult Results(IEnumerable<MappedRequirementViewModel> mappedRequirementViewModel, string nameString, string targetOrgName)
 		{
-			var c1 = HomeIndexViewModel.CategoryList.First((c) => c.CategoryId == specifyParametersViewModel.SelectedcategoryId);
-			ViewBag.SelectedCategory = c1.CategoryId;
-			ViewBag.SelectedCategoryName = c1.CategoryName;
-			ViewBag.ResourceType = specifyParametersViewModel.SelectedResource;
-			
-			return View();
+			ViewBag.SelectedCategoryName = mappedRequirementViewModel.FirstOrDefault().SelectedCategoryName;
+			ViewBag.ResourceType = mappedRequirementViewModel.FirstOrDefault().SelectedResource;
+			mappedRequirementViewModel.FirstOrDefault().TargetOrgName = targetOrgName;
+
+			return View(mappedRequirementViewModel.FirstOrDefault());
 		}
 
 		[AllowAnonymous]
