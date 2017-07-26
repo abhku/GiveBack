@@ -81,7 +81,7 @@ namespace GivingBack2.ViewModels
 		// Money
 		[Display(Name = "How much you want to donate?")]
 		[DataType(DataType.Currency)]
-		public int DonationAmount { get; set; }
+		public long DonationAmount { get; set; }
 
 		// Products
 		[Display(Name = "What do you want to donate? Please select from the list Below")]
@@ -99,11 +99,11 @@ namespace GivingBack2.ViewModels
 		// Time
 		[Display(Name = "When do you want to start?")]
 		[DataType(DataType.Date)]
-		public string StartDate { get; set; }
+		public DateTime StartDate { get; set; }
 
 		[Display(Name = "When do you want to end?")]
 		[DataType(DataType.Date)]
-		public string EndDate { get; set; }
+		public DateTime EndDate { get; set; }
 
 		[Display(Name = "When do you want to start(Time)?")]
 		[DataType(DataType.Time)]
@@ -156,18 +156,18 @@ namespace GivingBack2.ViewModels
 		// Time
 		[Display(Name = "When do you want to start?")]
 		[DataType(DataType.Date)]
-		public string StartDate { get; set; }
+		public DateTime StartDate { get; set; }
 
 		[Display(Name = "When do you want to end?")]
 		[DataType(DataType.Date)]
-		public string EndDate { get; set; }
+		public DateTime EndDate { get; set; }
 
 		[Display(Name = "When do you want to start(Time)?")]
 		[DataType(DataType.Time)]
-		public string StartTime { get; set; }
+		public DateTime StartTime { get; set; }
 
 		[Display(Name = "How many hours can you donate after starting?")]
-		public int HoursPerDate { get; set; }
+		public int? HoursPerDate { get; set; }
 
 
 		//Mapped Orgs
@@ -248,5 +248,33 @@ namespace GivingBack2.ViewModels
 
 		[Display(Name = "The Contact of the NGO")]
 		public long Quantity { get; set; }
+	}
+
+	public class TimeReqViewModel
+	{
+		public long? SelectedCategory { get; set; }
+		public long? SelectedResource { get; set; }
+
+		//Mapped Orgs
+		[Display(Name = "The NGO that matches your requirement")]
+		public string OrganizationName { get; set; }
+		[Display(Name = "The NGO that matches your requirement")]
+		public string ProgramDescription { get; set; }
+		[Display(Name = "The NGO that matches your requirement")]
+		public string OrgAddress { get; set; }
+		[Display(Name = "The NGO that matches your requirement")]
+		public string OrgContact { get; set; }
+
+		[Display(Name = "The Start Date of the Program")]
+		public DateTime StartDate { get; set; }
+
+		[Display(Name = "The End Date of the Program")]
+		public DateTime EndDate { get; set; }
+
+		[Display(Name = "The Start Time of the Program")]
+		public DateTime StartTime { get; set; }
+
+		[Display(Name = "The Man hours Per day")]
+		public int? ManHoursPerDay { get; set; }
 	}
 }

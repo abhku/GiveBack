@@ -41,7 +41,7 @@
 			@Html.TextBoxFor(m => m.EndDate, new { @class = "form-control date-picker" })
 			<br />
 			@Html.LabelFor(m => m.StartTime, new { @class = "form-control" })
-			@Html.DropDownListFor(m => m.StartTime.SelectedTimeIndex, new SelectList(GivingBack2.Models.Time.TimeList),new { @class = "form-control" })
+			@Html.DropDownListFor(m => m.StartTime.SelectedTime, new SelectList(GivingBack2.Models.Time.TimeList),new { @class = "form-control" })
 			<br />
 			@Html.LabelFor(m => m.HoursPerDate, new { @class = "form-control" })
 			@Html.TextBoxFor(m => m.HoursPerDate, new { @class = "form-control" })

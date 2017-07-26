@@ -100,9 +100,9 @@
 										<td>@Html.Label(@item.OrganizationName) @Html.Hidden("Name", @item.OrganizationName + "Contribute")</td>
 										<td>@Html.Label(@item.OrganizationAddress)</td>
 										<td>@Html.Label(@item.ProgramDescription)</td>
-										<td>@Html.Label(@item.StartDate)</td>
-										<td>@Html.Label(@item.EndDate)</td>
-										<td>@Html.Label(@item.StartTime)</td>
+										<td>@Html.Label(@item.StartDate.ToString())</td>
+										<td>@Html.Label(@item.EndDate.ToString())</td>
+										<td>@Html.Label(@item.StartTime.ToString())</td>
 										<td>@Html.Label(@item.HoursPerDate.ToString())</td>
 										<td>@Html.Label(@item.OrganizationContact)</td>
 										<td><input type="submit" value="Contribute" /></td>

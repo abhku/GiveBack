@@ -15,15 +15,82 @@ namespace GivingBack2.Models.EntityManager
 			List<MappedRequirementViewModel> mappedRequirementViewModel = new List<MappedRequirementViewModel>();
 
 			// Business Logic here
+			GiveBackDBEntities db = new GiveBackDBEntities();
+			var tviewModel = new List<TimeReqViewModel>();
 
+			var startTime = DateTime.Parse(specifyParametersViewModel.StartTime.SelectedTime.ToString());
+			var resultsFromDB = (from a in db.OrgDetails
+								 join b in db.Requirements on a.OrgId equals b.OrgId
+								 join c in db.TimeResources on b.ReqId equals c.ReqId
+								 where c.StartDate <= specifyParametersViewModel.StartDate
+								 && c.EndDate >= specifyParametersViewModel.EndDate
+								 && c.StartTime <= startTime
+								 && b.ResourceId == (long)specifyParametersViewModel.SelectedResource
+								 && b.ReceiverId == specifyParametersViewModel.SelectedcategoryId
+								 select new { a.OrgId, a.OrgName, a.Address, a.Contact, b.ResourceId, b.ReceiverId, b.Description, c.StartDate, c.EndDate, c.StartTime, c.ManHoursPerDay });
 
-			return mappedRequirementViewModel;
+			foreach (var item in resultsFromDB)
+			{
+				tviewModel.Add(new TimeReqViewModel
+				{
+					SelectedCategory = specifyParametersViewModel.SelectedcategoryId,
+					SelectedResource = (long)specifyParametersViewModel.SelectedResource,
+					OrganizationName = item.OrgName,
+					ProgramDescription = item.Description,
+					OrgAddress = item.Address,
+					OrgContact = item.Contact,
+					StartDate = (DateTime)(item.StartDate),
+					EndDate = (DateTime)(item.EndDate),
+					StartTime = (DateTime)(item.StartTime),
+					ManHoursPerDay = item.ManHoursPerDay
+				});
+			}
+
+			if (tviewModel.Count != 0)
+			{
+				foreach (var item in tviewModel)
+				{
+					mappedRequirementViewModel.Add(new MappedRequirementViewModel
+					{
+						SelectedcategoryId = item.SelectedCategory,
+						SelectedResource = (ResourceTypes)item.SelectedResource,
+						OrganizationName = item.OrganizationName,
+						ProgramDescription = item.ProgramDescription,
+						OrganizationAddress = item.OrgAddress,
+						OrganizationContact = item.OrgContact,
+						StartDate = item.StartDate,
+						EndDate = item.EndDate,
+						StartTime = item.StartTime,
+						HoursPerDate = item.ManHoursPerDay
+					});
+				}
+			}
+			else
+			{
+				mappedRequirementViewModel.Add(new MappedRequirementViewModel
+				{
+					SelectedcategoryId = specifyParametersViewModel.SelectedcategoryId,
+					SelectedResource = specifyParametersViewModel.SelectedResource,
+					OrganizationName = "Sorry !! No matches found. Please try again.",
+					ProgramDescription = "",
+					OrganizationAddress = "",
+					OrganizationContact = "",
+					StartDate = DateTime.MinValue,
+					EndDate = DateTime.MinValue,
+					StartTime = DateTime.MinValue,
+					HoursPerDate = 0
+				});
+			}
+
+				return mappedRequirementViewModel;
+			
 		}
 
 		public List<MappedRequirementViewModel> ProductRequirementMapping(SpecifyParametersViewModel specifyParametersViewModel)
 		{
 			List<MappedRequirementViewModel> mappedRequirementViewModel = new List<MappedRequirementViewModel>();
 
+			// Business Logic here
 			GiveBackDBEntities db = new GiveBackDBEntities();
 			var pviewModel = new List<ProductReqViewModel>();
 
@@ -40,8 +107,8 @@ namespace GivingBack2.Models.EntityManager
 			{
 				pviewModel.Add(new ProductReqViewModel
 				{
-					SelectedCategory = item.ReceiverId,
-					SelectedResource = item.ResourceId,
+					SelectedCategory = specifyParametersViewModel.SelectedcategoryId,
+					SelectedResource = (long)specifyParametersViewModel.SelectedResource,
 					OrganizationName = item.OrgName,
 					OrgAddress = item.Address,
 					OrgContact = item.Contact,
@@ -52,19 +119,37 @@ namespace GivingBack2.Models.EntityManager
 				});
 			}
 
-			foreach (var item in pviewModel)
+			if (pviewModel.Count != 0)
+			{
+				foreach (var item in pviewModel)
+				{
+					mappedRequirementViewModel.Add(new MappedRequirementViewModel
+					{
+						SelectedcategoryId = item.SelectedCategory,
+						SelectedResource = (ResourceTypes)item.SelectedResource,
+						OrganizationName = item.OrganizationName,
+						OrganizationAddress = item.OrgAddress,
+						OrganizationContact = item.OrgContact,
+						ProgramDescription = item.ProgramDescription,
+						ProductName = item.ProductName,
+						ProductUnit = item.Unit,
+						AvailableQuantity = item.Quantity
+					});
+				}
+			}
+			else
 			{
 				mappedRequirementViewModel.Add(new MappedRequirementViewModel
 				{
-					SelectedcategoryId = item.SelectedCategory,
-					SelectedResource = (ResourceTypes)item.SelectedResource,
-					OrganizationName = item.OrganizationName,
-					OrganizationAddress = item.OrgAddress,
-					OrganizationContact = item.OrgContact,
-					ProgramDescription = item.ProgramDescription,
-					ProductName = item.ProductName,
-					ProductUnit = item.Unit,
-					AvailableQuantity = item.Quantity
+					SelectedcategoryId = specifyParametersViewModel.SelectedcategoryId,
+					SelectedResource = specifyParametersViewModel.SelectedResource,
+					OrganizationName = "Sorry !! No matches found. Please try again.",
+					OrganizationAddress = "",
+					OrganizationContact = "",
+					ProgramDescription = "",
+					ProductName = "",
+					ProductUnit = "",
+					AvailableQuantity = 0
 				});
 			}
 
@@ -91,8 +176,8 @@ namespace GivingBack2.Models.EntityManager
 			{
 				mviewModel.Add(new MoneyReqViewModel
 				{
-					SelectedCategory = item.ReceiverId,
-					SelectedResource = item.ResourceId,
+					SelectedCategory = specifyParametersViewModel.SelectedcategoryId,
+					SelectedResource = (long)specifyParametersViewModel.SelectedResource,
 					OrganizationName = item.OrgName,
 					OrganizationAddress = item.Address,
 					OrganizationContact = item.Contact,
@@ -102,17 +187,33 @@ namespace GivingBack2.Models.EntityManager
 				});
 			}
 
-			foreach (var item in mviewModel)
+			if (mviewModel.Count != 0)
+			{
+				foreach (var item in mviewModel)
+				{
+					mappedRequirementViewModel.Add(new MappedRequirementViewModel
+					{
+						SelectedcategoryId = item.SelectedCategory,
+						SelectedResource = (ResourceTypes)item.SelectedResource,
+						OrganizationName = item.OrganizationName,
+						OrganizationAddress = item.OrganizationAddress,
+						OrganizationContact = item.OrganizationContact,
+						ProgramDescription = item.ProgramDescription,
+						AmountNeedForOrg = item.AmountTotal
+					});
+				}
+			}
+			else
 			{
 				mappedRequirementViewModel.Add(new MappedRequirementViewModel
 				{
-					SelectedcategoryId = item.SelectedCategory,
-					SelectedResource = (ResourceTypes)item.SelectedResource,
-					OrganizationName = item.OrganizationName,
-					OrganizationAddress = item.OrganizationAddress,
-					OrganizationContact = item.OrganizationContact,
-					ProgramDescription = item.ProgramDescription,
-					AmountNeedForOrg = item.AmountTotal
+					SelectedcategoryId = specifyParametersViewModel.SelectedcategoryId,
+					SelectedResource = specifyParametersViewModel.SelectedResource,
+					OrganizationName = "Sorry !! No matches found. Please try again.",
+					OrganizationAddress = "",
+					OrganizationContact = "",
+					ProgramDescription = "",
+					AmountNeedForOrg = 0
 				});
 			}
 
