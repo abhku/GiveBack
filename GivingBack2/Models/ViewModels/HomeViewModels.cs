@@ -82,7 +82,7 @@ namespace GivingBack2.ViewModels
 		[Display(Name = "How much you want to donate?")]
 		[DataType(DataType.Currency)]
 		public long DonationAmount { get; set; }
-
+		
 		// Products
 		[Display(Name = "What do you want to donate? Please select from the list Below")]
 		public string ProductNameLabel { get; set; }
@@ -94,7 +94,7 @@ namespace GivingBack2.ViewModels
 		public string ProductUnit { get; set; }
 
 		[Display(Name = "How much do you want to donate (specify in the quantity above) ?")]
-		public long ProductQuantity { get; set; }
+		public long UserMentionedQuantity { get; set; }
 
 		// Time
 		[Display(Name = "When do you want to start?")]
@@ -133,6 +133,8 @@ namespace GivingBack2.ViewModels
 		public string SelectedCategoryName { get; set; }
 		public long? SelectedcategoryId { get; set; }
 		public int OrganizationId { get; set; }
+		public bool resultsFound { get; set; }
+		public string OrgUrl { get; set; }
 
 		//Target OrgName
 		public string TargetOrgName { get; set; }
@@ -141,6 +143,11 @@ namespace GivingBack2.ViewModels
 		[Display(Name = "How much you want to donate?")]
 		[DataType(DataType.Currency)]
 		public int DonationAmount { get; set; }
+
+		[DataType(DataType.Currency)]
+		public int AmountTotal { get; set; }
+		[DataType(DataType.Currency)]
+		public int AmountRemaining { get; set; }
 
 		// Products
 
@@ -151,8 +158,11 @@ namespace GivingBack2.ViewModels
 		public string ProductUnit { get; set; }
 
 		[Display(Name = "How much do you want to donate (specify in the quantity above) ?")]
-		public long ProductQuantity { get; set; }
+		public long UserMentionedQuantity { get; set; }
 		
+		public long ProductQuantity { get; set; }
+		public long AvailableQuantity { get; set; }
+
 		// Time
 		[Display(Name = "When do you want to start?")]
 		[DataType(DataType.Date)]
@@ -182,14 +192,7 @@ namespace GivingBack2.ViewModels
 
 		[Display(Name = "The Description of the Program")]
 		public string ProgramDescription { get; set; }
-
-		//Money - Org
-		[Display(Name = "The Amount need of Organization")]
-		public long AmountNeedForOrg { get; set; }
-
-		//Product - Org
-		[Display(Name = "How much do you want to donate (specify in the quantity above) ?")]
-		public long AvailableQuantity { get; set; }
+		
 
 		public MappedRequirementViewModel()
 		{
@@ -203,7 +206,8 @@ namespace GivingBack2.ViewModels
 	public class MoneyReqViewModel
 	{
 		public long? SelectedCategory { get; set; }
-		public long? SelectedResource { get; set; }
+		public ResourceTypes SelectedResource { get; set; }
+		public string SelectedCategoryName { get; set; }
 
 		//Mapped Orgs
 		[Display(Name = "The NGO that matches your requirement")]
@@ -213,22 +217,26 @@ namespace GivingBack2.ViewModels
 
 		[Display(Name = "The Contact of the NGO")]
 		public string OrganizationContact { get; set; }
+		public string OrgUrl { get; set; }
 
 		[Display(Name = "The Description of the Program")]
 		public string ProgramDescription { get; set; }
 
-		[Display(Name = "The Address of the NGO")]
-		public long AmountTotal { get; set; }
+		[DataType(DataType.Currency)]
+		public int DonationAmount { get; set; }
 
-		[Display(Name = "The Contact of the NGO")]
-		public long AmountRemaining { get; set; }		
+		[DataType(DataType.Currency)]
+		public int AmountTotal { get; set; }
+
+		[DataType(DataType.Currency)]
+		public int AmountRemaining { get; set; }
 	}
 
 	public class ProductReqViewModel
 	{
 		public long? SelectedCategory { get; set; }
-		public long? SelectedResource { get; set; }
-
+		public ResourceTypes SelectedResource { get; set; }
+		public string SelectedCategoryName { get; set; }
 		//Mapped Orgs
 		[Display(Name = "The NGO that matches your requirement")]
 		public string OrganizationName { get; set; }
@@ -236,6 +244,7 @@ namespace GivingBack2.ViewModels
 		public string OrgAddress { get; set; }
 		[Display(Name = "The NGO that matches your requirement")]
 		public string OrgContact { get; set; }
+		public string OrgUrl { get; set; }
 
 		[Display(Name = "The Description of the Program")]
 		public string ProgramDescription { get; set; }
@@ -246,14 +255,18 @@ namespace GivingBack2.ViewModels
 		[Display(Name = "The Unit of the product")]
 		public string Unit { get; set; }
 
-		[Display(Name = "The Contact of the NGO")]
-		public long Quantity { get; set; }
+		[Display(Name = "The available quantity of the Product")]
+		public long ProductQuantity { get; set; }
+
+		[Display(Name = "The User mentioned quantity")]
+		public long UserMentionedQuantity { get; set; }
 	}
 
 	public class TimeReqViewModel
 	{
 		public long? SelectedCategory { get; set; }
-		public long? SelectedResource { get; set; }
+		public ResourceTypes SelectedResource { get; set; }
+		public string SelectedCategoryName { get; set; }
 
 		//Mapped Orgs
 		[Display(Name = "The NGO that matches your requirement")]
@@ -264,6 +277,7 @@ namespace GivingBack2.ViewModels
 		public string OrgAddress { get; set; }
 		[Display(Name = "The NGO that matches your requirement")]
 		public string OrgContact { get; set; }
+		public string OrgUrl { get; set; }
 
 		[Display(Name = "The Start Date of the Program")]
 		public DateTime StartDate { get; set; }

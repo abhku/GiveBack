@@ -15,7 +15,7 @@
 				@using (Html.BeginForm("Results", "Home", FormMethod.Post))
 				{
 					if (Model.FirstOrDefault().SelectedResource == GivingBack2.Models.ResourceTypes.Money)
-					{									
+					{
 						<table id="OrganizationTable" border="2">
 							<thead>
 								<tr>
@@ -32,12 +32,12 @@
 								@foreach(var item in Model)
 								{
 									<tr>
-										<td>@Html.Label(@item.OrganizationName) @Html.Hidden("Name", @item.OrganizationName + "Contribute")</td>
+										<td>@Html.Label(@item.OrganizationName)</td>
 										<td>@Html.Label(@item.OrganizationAddress)</td>
 										<td>@Html.Label(@item.ProgramDescription)</td>
-										<td>@Html.Label(@item.AmountNeedForOrg.ToString())</td>
+										<td>@Html.Label(@item.AmountTotal.ToString())</td>
 										<td>@Html.Label(@item.OrganizationContact)</td>
-										<td><input type="submit" value="Contribute" /></td>
+										<td><input type="button" value="Accept and Contribute" onclick="location.href='@Url.Action("Results", "Home" , new { OrganizationId = @item.OrganizationContact, OrganizationName = @item.OrganizationName, OrgUrl=@item.OrgUrl, SelectedResource = @item.SelectedResource, SelectedcategoryId = @item.SelectedcategoryId, SelectedCategoryName=@item.SelectedCategoryName, AmountTotal = @item.AmountTotal, DonationAmount = @item.DonationAmount, resultsFound = @item.resultsFound })'" /></td>
 									</tr>
 								}
 							</tbody>
@@ -69,7 +69,7 @@
 										<td>@Html.Label(@item.ProductName)</td>
 										<td>@Html.Label(@item.AvailableQuantity.ToString() +" "+ @item.ProductUnit)</td>
 										<td>@Html.Label(@item.OrganizationContact)</td>
-										<td><input type="submit" value="Contribute" /></td>
+										<td><input type="button" value="Accept and Contribute" onclick="location.href='@Url.Action("Results", "Home" , new {OrganizationId = @item.OrganizationId, OrganizationName = @item.OrganizationName, OrgUrl=@item.OrgUrl, SelectedResource = @item.SelectedResource, SelectedcategoryId = @item.SelectedcategoryId,SelectedCategoryName=@item.SelectedCategoryName, ProductName = @item.ProductName, AvailableQuantity = @item.AvailableQuantity, ProductQuantity = @item.UserMentionedQuantity, resultsFound = @item.resultsFound })'" /></td>
 									</tr>
 								}
 							</tbody>
@@ -93,8 +93,8 @@
 								</tr>
 							</thead>
 							<tbody>
-
-								@foreach (var item in Model)
+								
+								@foreach(var item in Model)
 								{
 									<tr>
 										<td>@Html.Label(@item.OrganizationName) @Html.Hidden("Name", @item.OrganizationName + "Contribute")</td>
@@ -105,7 +105,7 @@
 										<td>@Html.Label(@item.StartTime.ToString())</td>
 										<td>@Html.Label(@item.HoursPerDate.ToString())</td>
 										<td>@Html.Label(@item.OrganizationContact)</td>
-										<td><input type="submit" value="Contribute" /></td>
+										<td><input type="button" value="Accept and Contribute" onclick="location.href='@Url.Action("Results", "Home" , new {OrganizationId=@item.OrganizationId, OrganizationName = @item.OrganizationName, OrgUrl=@item.OrgUrl, SelectedResource = @item.SelectedResource, SelectedcategoryId = @item.SelectedcategoryId,SelectedCategoryName=@item.SelectedCategoryName, StartDate = @item.StartDate, EndDate = @item.EndDate, StartTime = @item.StartTime, HoursPerDate = @item.HoursPerDate, resultsFound = @item.resultsFound })'" /></td>
 									</tr>
 								}
 							</tbody>

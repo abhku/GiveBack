@@ -25,6 +25,7 @@ namespace GivingBack2.Models.DB
         public Nullable<System.DateTime> EnrolledDate { get; set; }
         public string Address { get; set; }
         public string Contact { get; set; }
+        public string url { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Requirement> Requirements { get; set; }
