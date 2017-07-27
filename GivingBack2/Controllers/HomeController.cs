@@ -74,18 +74,14 @@ namespace GivingBack2.Controllers
 
 		public ActionResult Results(MappedRequirementViewModel results)
 		{
-			//if (results.SelectedResource == ResourceTypes.Money)
-			//{
+			if (results.resultsFound == true)
+			{
+				TempData["msg"] = "Thanks for Accepting!\n You will be redirected to the Organization Page where you can complete the contribution!";
+			}
+			//return Redirect(results.OrgUrl);
 
-			//}
-			//else if(results.SelectedResource==ResourceTypes.Product)
-			//{
-
-			//} else if(results.SelectedResource == ResourceTypes.Time)
-			//{
-
-			//}
 			return View(results);
+
 		}
 
 		[AllowAnonymous]

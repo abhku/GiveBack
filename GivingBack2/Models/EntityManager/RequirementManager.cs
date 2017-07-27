@@ -19,15 +19,16 @@ namespace GivingBack2.Models.EntityManager
 			var tviewModel = new List<TimeReqViewModel>();
 
 			var startTime = DateTime.Parse(specifyParametersViewModel.StartTime.SelectedTime.ToString());
+			var startDate = specifyParametersViewModel.StartDate.Add(startTime.TimeOfDay);
 			var resultsFromDB = (from a in db.OrgDetails
 								 join b in db.Requirements on a.OrgId equals b.OrgId
 								 join c in db.TimeResources on b.ReqId equals c.ReqId
-								 where c.StartDate <= specifyParametersViewModel.StartDate
+								 where c.StartDate <= startDate
 								 && c.EndDate >= specifyParametersViewModel.EndDate
-								 && c.StartTime <= startTime
+								 //&& c.ManHoursPerDay >= specifyParametersViewModel.HoursPerDate
 								 && b.ResourceId == (long)specifyParametersViewModel.SelectedResource
 								 && b.ReceiverId == specifyParametersViewModel.SelectedcategoryId
-								 select new { a.OrgId, a.OrgName, a.Address, a.Contact, b.ResourceId, b.ReceiverId, b.Description, c.StartDate, c.EndDate, c.StartTime, c.ManHoursPerDay });
+								 select new { a.OrgId, a.OrgName, a.url, a.Address, a.Contact, b.ResourceId, b.ReceiverId, b.Description, c.StartDate, c.EndDate, c.StartTime, c.ManHoursPerDay });
 
 			foreach (var item in resultsFromDB)
 			{
@@ -40,6 +41,7 @@ namespace GivingBack2.Models.EntityManager
 					ProgramDescription = item.Description,
 					OrgAddress = item.Address,
 					OrgContact = item.Contact,
+					OrgUrl = item.url,
 					StartDate = (DateTime)(item.StartDate),
 					EndDate = (DateTime)(item.EndDate),
 					StartTime = (DateTime)(item.StartTime),
@@ -60,6 +62,7 @@ namespace GivingBack2.Models.EntityManager
 						ProgramDescription = item.ProgramDescription,
 						OrganizationAddress = item.OrgAddress,
 						OrganizationContact = item.OrgContact,
+						OrgUrl = item.OrgUrl,
 						StartDate = item.StartDate,
 						EndDate = item.EndDate,
 						StartTime = item.StartTime,
@@ -72,17 +75,6 @@ namespace GivingBack2.Models.EntityManager
 			{
 				mappedRequirementViewModel.Add(new MappedRequirementViewModel
 				{
-					//SelectedcategoryId = specifyParametersViewModel.SelectedcategoryId,
-					//SelectedCategoryName = specifyParametersViewModel.SelectedCategoryName,
-					//SelectedResource = specifyParametersViewModel.SelectedResource,
-					//OrganizationName = "Sorry !! No matches found. Please try again.",
-					//ProgramDescription = "",
-					//OrganizationAddress = "",
-					//OrganizationContact = "",
-					//StartDate = DateTime.MinValue,
-					//EndDate = DateTime.MinValue,
-					//StartTime = DateTime.MinValue,
-					//HoursPerDate = 0,
 					resultsFound = false
 				});
 			}
@@ -106,7 +98,7 @@ namespace GivingBack2.Models.EntityManager
 								 && c.Name == specifyParametersViewModel.SelectedProductName
 								 && b.ResourceId == (long)specifyParametersViewModel.SelectedResource
 								 && b.ReceiverId == specifyParametersViewModel.SelectedcategoryId
-								 select new { a.OrgId, a.OrgName, a.Address, a.Contact, b.ResourceId, b.ReceiverId, b.Description, c.ReqId, c.Unit, c.Quantity, c.Name });
+								 select new { a.OrgId, a.OrgName, a.url, a.Address, a.Contact, b.ResourceId, b.ReceiverId, b.Description, c.ReqId, c.Unit, c.Quantity, c.Name });
 
 			foreach (var item in resultsFromDB)
 			{
@@ -118,6 +110,7 @@ namespace GivingBack2.Models.EntityManager
 					OrganizationName = item.OrgName,
 					OrgAddress = item.Address,
 					OrgContact = item.Contact,
+					OrgUrl = item.url,
 					ProgramDescription = item.Description,
 					ProductName = item.Name,
 					Unit = item.Unit,
@@ -138,6 +131,7 @@ namespace GivingBack2.Models.EntityManager
 						OrganizationName = item.OrganizationName,
 						OrganizationAddress = item.OrgAddress,
 						OrganizationContact = item.OrgContact,
+						OrgUrl = item.OrgUrl,
 						ProgramDescription = item.ProgramDescription,
 						ProductName = item.ProductName,
 						ProductUnit = item.Unit,
@@ -151,17 +145,6 @@ namespace GivingBack2.Models.EntityManager
 			{
 				mappedRequirementViewModel.Add(new MappedRequirementViewModel
 				{
-					//SelectedcategoryId = specifyParametersViewModel.SelectedcategoryId,
-					//SelectedCategoryName = specifyParametersViewModel.SelectedCategoryName,
-					//SelectedResource = specifyParametersViewModel.SelectedResource,
-					//OrganizationName = "Sorry !! No matches found. Please try again.",
-					//OrganizationAddress = "",
-					//OrganizationContact = "",
-					//ProgramDescription = "",
-					//ProductName = "",
-					//ProductUnit = "",
-					//AvailableQuantity = 0,
-					//UserMentionedQuantity = 0,
 					resultsFound = false
 				});
 			}
@@ -183,7 +166,7 @@ namespace GivingBack2.Models.EntityManager
 								where c.AmountTotal >= specifyParametersViewModel.DonationAmount
 								&& b.ResourceId == (long)specifyParametersViewModel.SelectedResource
 								&& b.ReceiverId == specifyParametersViewModel.SelectedcategoryId
-								select new { a.OrgId, a.OrgName, a.Address, a.Contact, b.ResourceId, b.ReceiverId, b.Description, c.ReqId, c.AmountTotal, c.AmountRemaining });
+								select new { a.OrgId, a.OrgName, a.url, a.Address, a.Contact, b.ResourceId, b.ReceiverId, b.Description, c.ReqId, c.AmountTotal, c.AmountRemaining });
 
 			foreach (var item in resultsFromDB)
 			{
@@ -195,6 +178,7 @@ namespace GivingBack2.Models.EntityManager
 					OrganizationName = item.OrgName,
 					OrganizationAddress = item.Address,
 					OrganizationContact = item.Contact,
+					OrgUrl = item.url,
 					ProgramDescription = item.Description,
 					DonationAmount = Int32.Parse(specifyParametersViewModel.DonationAmount.ToString()),
 					AmountTotal = Int32.Parse(item.AmountTotal.ToString()),
@@ -214,6 +198,7 @@ namespace GivingBack2.Models.EntityManager
 						OrganizationName = item.OrganizationName,
 						OrganizationAddress = item.OrganizationAddress,
 						OrganizationContact = item.OrganizationContact,
+						OrgUrl = item.OrgUrl,
 						ProgramDescription = item.ProgramDescription,
 						DonationAmount = item.DonationAmount,
 						AmountTotal = item.AmountTotal,
@@ -226,16 +211,6 @@ namespace GivingBack2.Models.EntityManager
 			{
 				mappedRequirementViewModel.Add(new MappedRequirementViewModel
 				{
-					//SelectedcategoryId = specifyParametersViewModel.SelectedcategoryId,
-					//SelectedCategoryName = specifyParametersViewModel.SelectedCategoryName,
-					//SelectedResource = specifyParametersViewModel.SelectedResource,
-					//OrganizationName = "Sorry !! No matches found. Please try again.",
-					//OrganizationAddress = "",
-					//OrganizationContact = "",
-					//ProgramDescription = "",
-					//DonationAmount = 0,
-					//AmountTotal = 0,
-					//AmountRemaining = 0,
 					resultsFound = false
 				});
 			}

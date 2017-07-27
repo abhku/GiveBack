@@ -11,31 +11,45 @@
 		{
 			if (Model.resultsFound == false)
 			{
-				@Html.DisplayName("\nSorry. No results found. Please try again!!");
+				@Html.DisplayName("Sorry. No results found. Please try again!!");
 			}
 			else
 			{
-				if (Model.SelectedResource == GivingBack2.Models.ResourceTypes.Money)
+				
+			if (TempData["msg"] != null)
+			{
+				
+					<script>
+						alert(TempData["msg"]);
+					</script>
+			
+				Response.Redirect(Model.OrgUrl);
+			}
+						
+				else
 				{
+					if (Model.SelectedResource == GivingBack2.Models.ResourceTypes.Money)
+					{
 				@Html.DisplayName("You have contributed your " + Model.SelectedResource.ToString());
 				@Html.DisplayName("\n of currency " + Model.DonationAmount);
 				@Html.DisplayName("\n for helping the" + Model.SelectedCategoryName);
 				@Html.DisplayName("\n by selecting the Organization " + Model.OrganizationName);
 				@Html.DisplayName("\n Thanks !!");
-				}
-				else if (Model.SelectedResource == GivingBack2.Models.ResourceTypes.Product)
-				{
+					}
+					else if (Model.SelectedResource == GivingBack2.Models.ResourceTypes.Product)
+					{
 				@Html.DisplayName("You have contributed your product \"" + Model.ProductName.ToString() + "\"");
 				@Html.DisplayName("\n for helping the " + Model.SelectedCategoryName);
 				@Html.DisplayName("\n by selecting the Organization " + Model.OrganizationName);
 				@Html.DisplayName("\n Thanks !!");
-				}
-				else if (Model.SelectedResource == GivingBack2.Models.ResourceTypes.Time)
-				{
+					}
+					else if (Model.SelectedResource == GivingBack2.Models.ResourceTypes.Time)
+					{
 				@Html.DisplayName("You have booked your " + Model.SelectedResource.ToString());
 				@Html.DisplayName("\n for helping the" + Model.SelectedCategoryName);
 				@Html.DisplayName("\n by selecting the Organization " + Model.OrganizationName);
 				@Html.DisplayName("\n and agreed to spend " + Model.HoursPerDate + " per day. Thanks !!");
+					}
 				}
 			}
 			<br/>

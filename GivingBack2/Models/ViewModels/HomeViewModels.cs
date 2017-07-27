@@ -134,6 +134,7 @@ namespace GivingBack2.ViewModels
 		public long? SelectedcategoryId { get; set; }
 		public int OrganizationId { get; set; }
 		public bool resultsFound { get; set; }
+		public string OrgUrl { get; set; }
 
 		//Target OrgName
 		public string TargetOrgName { get; set; }
@@ -216,6 +217,7 @@ namespace GivingBack2.ViewModels
 
 		[Display(Name = "The Contact of the NGO")]
 		public string OrganizationContact { get; set; }
+		public string OrgUrl { get; set; }
 
 		[Display(Name = "The Description of the Program")]
 		public string ProgramDescription { get; set; }
@@ -242,6 +244,7 @@ namespace GivingBack2.ViewModels
 		public string OrgAddress { get; set; }
 		[Display(Name = "The NGO that matches your requirement")]
 		public string OrgContact { get; set; }
+		public string OrgUrl { get; set; }
 
 		[Display(Name = "The Description of the Program")]
 		public string ProgramDescription { get; set; }
@@ -274,6 +277,7 @@ namespace GivingBack2.ViewModels
 		public string OrgAddress { get; set; }
 		[Display(Name = "The NGO that matches your requirement")]
 		public string OrgContact { get; set; }
+		public string OrgUrl { get; set; }
 
 		[Display(Name = "The Start Date of the Program")]
 		public DateTime StartDate { get; set; }
