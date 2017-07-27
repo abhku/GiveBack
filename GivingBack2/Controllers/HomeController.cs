@@ -65,16 +65,27 @@ namespace GivingBack2.Controllers
 			{
 				mappedRequirementViewModel = RM.TimeRequirementMapping(specifyParameterViewModel);
 			}
+			if (mappedRequirementViewModel.FirstOrDefault().resultsFound == false)
+			{
+				return RedirectToAction("Results", "Home", new { resultsFound = mappedRequirementViewModel.FirstOrDefault().resultsFound });
+			}
 			return View(mappedRequirementViewModel);
 		}
 
-		public ActionResult Results(IEnumerable<MappedRequirementViewModel> mappedRequirementViewModel, string nameString, string targetOrgName)
+		public ActionResult Results(MappedRequirementViewModel results)
 		{
-			ViewBag.SelectedCategoryName = mappedRequirementViewModel.FirstOrDefault().SelectedCategoryName;
-			ViewBag.ResourceType = mappedRequirementViewModel.FirstOrDefault().SelectedResource;
-			mappedRequirementViewModel.FirstOrDefault().TargetOrgName = targetOrgName;
+			//if (results.SelectedResource == ResourceTypes.Money)
+			//{
 
-			return View(mappedRequirementViewModel.FirstOrDefault());
+			//}
+			//else if(results.SelectedResource==ResourceTypes.Product)
+			//{
+
+			//} else if(results.SelectedResource == ResourceTypes.Time)
+			//{
+
+			//}
+			return View(results);
 		}
 
 		[AllowAnonymous]
